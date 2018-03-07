@@ -11,12 +11,16 @@ import java.util.function.BinaryOperator;
 public class Function_03_Test {
 
     //  tag::makeAChild[]
-    // TODO Compléter la fonction makeAChild
-    // TODO l'enfant possède le nom du père
-    // TODO l'enfant possède le prenom "<PRENOM_PERE> <PRENOM_MERE>"
-    // TODO l'age de l'enfant est 0
-    // TODO le mot de passe de l'enfant est null
-    BinaryOperator<Person> makeAChild = null;
+    // Compléter la fonction makeAChild
+    // l'enfant possède le nom du père
+    // l'enfant possède le prenom "<PRENOM_PERE> <PRENOM_MERE>"
+    // l'age de l'enfant est 0
+    // le mot de passe de l'enfant est null
+    BinaryOperator<Person> makeAChild = (p,m) -> {
+    	String prenom = p.getFirstname() + " " + m.getFirstname();
+    	Person c = new Person(prenom, p.getLastname(), 0, null);
+    	return c;
+    };
     //  end::makeAChild[]
 
 
@@ -26,8 +30,8 @@ public class Function_03_Test {
         Person father = new Person("John", "France", 25, "johndoe");
         Person mother = new Person("Aline", "Lebreton", 22, "alino");
 
-        // TODO compléter le test pour qu'il soit passant
-        Person child = null;
+        // compléter le test pour qu'il soit passant
+        Person child = makeAChild.apply(father, mother);
 
         assert child.getFirstname().equals("John Aline");
         assert child.getLastname().equals("France");
